@@ -293,14 +293,14 @@ function AudienceCarousel() {
 function Footer() {
   return (
     <footer className="border-t border-border bg-surface-elevated">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:gap-12 md:grid-cols-[1.4fr_0.8fr_1fr] md:items-start md:justify-between md:px-8 lg:gap-20">
-        <div className="max-w-md">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-14 sm:grid-cols-[minmax(0,1.35fr)_minmax(150px,0.75fr)_minmax(220px,1fr)] sm:items-start sm:gap-8 md:px-8 lg:gap-20">
+        <div className="max-w-md sm:pr-6">
           <Link to="/" className="mb-5 inline-flex items-center" aria-label="Ir para a Home da DS Pharma">
             <img src={dsPharmaLogo} alt="DS Pharma" className="h-12 w-auto object-contain" width={320} height={168} />
           </Link>
           <p className="leading-7 text-steel">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
         </div>
-        <div className="md:justify-self-center">
+        <div className="sm:justify-self-center">
           <h3 className="mb-4 text-base font-semibold text-ink">Empresa</h3>
           <div className="grid gap-3 text-sm text-steel">
             <Link to="/institucional" className="transition-colors hover:text-primary">Institucional</Link>
@@ -308,7 +308,7 @@ function Footer() {
             <Link to="/compliance" className="transition-colors hover:text-primary">Compliance</Link>
           </div>
         </div>
-        <div className="md:justify-self-end md:text-left">
+        <div className="sm:justify-self-end sm:text-left">
           <h3 className="mb-4 text-base font-semibold text-ink">Contato</h3>
           <div className="grid gap-3 text-sm text-steel">
             <a href="mailto:comercial@dspharma.com.br" className="transition-colors hover:text-primary">comercial@dspharma.com.br</a>
