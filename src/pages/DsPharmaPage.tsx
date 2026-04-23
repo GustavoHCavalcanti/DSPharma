@@ -16,6 +16,7 @@ import {
   Headphones,
   LockKeyhole,
   Mail,
+  Menu,
   MapPin,
   MapPinned,
   PackageCheck,
@@ -26,12 +27,14 @@ import {
   ShieldCheck,
   Target,
   Truck,
+  X,
   type LucideIcon,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import institutionalImage from "@/assets/ds-pharma-institutional.jpg";
+import dsPharmaLogo from "@/assets/ds-pharma-logo.png";
 
 type IconItem = {
   icon: LucideIcon;
@@ -40,13 +43,17 @@ type IconItem = {
 };
 
 const navItems = [
-  { to: "/", label: "Home" },
   { to: "/institucional", label: "Institucional" },
   { to: "/produtos", label: "Produtos / Soluções" },
   { to: "/compliance", label: "Compliance" },
   { to: "/cadastro-b2b", label: "Cadastro B2B" },
   { to: "/contato", label: "Contato" },
 ];
+
+const headerNavClass = ({ isActive }: { isActive: boolean }) =>
+  `rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+    isActive ? "bg-secondary text-secondary-foreground" : "text-steel hover:bg-muted hover:text-ink"
+  }`;
 
 const differentials: IconItem[] = [
   { icon: ShieldCheck, title: "Exclusivo B2B", text: "Atendimento direcionado a empresas, distribuidores e setor governamental." },
