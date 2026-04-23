@@ -16,6 +16,7 @@ import {
   Headphones,
   LockKeyhole,
   Mail,
+  Menu,
   MapPin,
   MapPinned,
   PackageCheck,
@@ -26,12 +27,14 @@ import {
   ShieldCheck,
   Target,
   Truck,
+  X,
   type LucideIcon,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import institutionalImage from "@/assets/ds-pharma-institutional.jpg";
+import dsPharmaLogo from "@/assets/ds-pharma-logo.png";
 
 type IconItem = {
   icon: LucideIcon;
@@ -40,13 +43,17 @@ type IconItem = {
 };
 
 const navItems = [
-  { to: "/", label: "Home" },
   { to: "/institucional", label: "Institucional" },
   { to: "/produtos", label: "Produtos / Soluções" },
   { to: "/compliance", label: "Compliance" },
   { to: "/cadastro-b2b", label: "Cadastro B2B" },
   { to: "/contato", label: "Contato" },
 ];
+
+const headerNavClass = ({ isActive }: { isActive: boolean }) =>
+  `rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+    isActive ? "bg-secondary text-secondary-foreground" : "text-steel hover:bg-muted hover:text-ink"
+  }`;
 
 const differentials: IconItem[] = [
   { icon: ShieldCheck, title: "Exclusivo B2B", text: "Atendimento direcionado a empresas, distribuidores e setor governamental." },
@@ -119,38 +126,65 @@ const checklist: IconItem[] = [
 ];
 
 function Layout({ children }: { children: React.ReactNode }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateHeaderDepth = () => setHasScrolled(window.scrollY > 8);
+
+    updateHeaderDepth();
+    window.addEventListener("scroll", updateHeaderDepth, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateHeaderDepth);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-40 border-b border-border/80 bg-surface/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-          <Link to="/" className="flex items-center gap-3" aria-label="DS Pharma Home">
-            <span className="flex size-10 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-button">
-              <ShieldCheck className="size-5" />
-            </span>
-            <span className="leading-tight">
-              <strong className="block text-lg font-semibold tracking-normal text-ink">DS Pharma</strong>
-              <span className="text-xs font-medium text-steel">Importação e distribuição</span>
-            </span>
+      <header
+        className={`sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-xl transition-shadow duration-300 ease-out ${
+          hasScrolled ? "shadow-card" : "shadow-none"
+        }`}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-4 py-3 md:px-8">
+          <Link to="/" className="flex shrink-0 items-center" aria-label="Ir para a Home da DS Pharma" onClick={() => setIsMobileMenuOpen(false)}>
+            <img src={dsPharmaLogo} alt="DS Pharma" className="h-10 w-auto object-contain md:h-12" width={320} height={168} />
           </Link>
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
             {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) =>
-                  `rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                    isActive ? "bg-secondary text-secondary-foreground" : "text-steel hover:bg-muted hover:text-ink"
-                  }`
-                }
-              >
+              <NavLink key={item.to} to={item.to} className={headerNavClass}>
                 {item.label}
               </NavLink>
             ))}
           </nav>
-          <Button asChild variant="hero" size="sm" className="hidden md:inline-flex">
-            <Link to="/cadastro-b2b">Solicitar cadastro</Link>
-          </Button>
+          <div className="hidden items-center lg:flex">
+            <Button asChild variant="hero" size="sm">
+              <Link to="/cadastro-b2b">Solicitar cadastro empresarial</Link>
+            </Button>
+          </div>
+          <button
+            type="button"
+            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-surface text-ink transition-colors hover:bg-secondary hover:text-primary lg:hidden"
+            aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+          >
+            {isMobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
+        {isMobileMenuOpen && (
+          <div className="border-t border-border bg-surface px-4 py-4 shadow-card lg:hidden">
+            <nav className="mx-auto grid max-w-7xl gap-2" aria-label="Navegação mobile">
+              {navItems.map((item) => (
+                <NavLink key={item.to} to={item.to} className={headerNavClass} onClick={() => setIsMobileMenuOpen(false)}>
+                  {item.label}
+                </NavLink>
+              ))}
+              <Button asChild variant="hero" size="lg" className="mt-2 w-full">
+                <Link to="/cadastro-b2b" onClick={() => setIsMobileMenuOpen(false)}>Solicitar cadastro empresarial</Link>
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
       <main>{children}</main>
       <Footer />
@@ -261,10 +295,9 @@ function Footer() {
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-[1.3fr_1fr_1fr] md:px-8">
         <div>
-          <div className="mb-4 flex items-center gap-3 text-ink">
-            <span className="flex size-9 items-center justify-center rounded-md bg-primary text-primary-foreground"><ShieldCheck className="size-5" /></span>
-            <strong className="text-lg">DS Pharma</strong>
-          </div>
+          <Link to="/" className="mb-4 inline-flex items-center" aria-label="Ir para a Home da DS Pharma">
+            <img src={dsPharmaLogo} alt="DS Pharma" className="h-11 w-auto object-contain" width={320} height={168} />
+          </Link>
           <p className="max-w-md leading-7 text-steel">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
         </div>
         <div>
