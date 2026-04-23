@@ -51,8 +51,8 @@ const navItems = [
 ];
 
 const headerNavClass = ({ isActive }: { isActive: boolean }) =>
-  `rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-    isActive ? "bg-secondary text-secondary-foreground" : "text-steel hover:bg-muted hover:text-ink"
+  `relative rounded-md px-3 py-2 text-sm font-medium transition-colors after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-primary after:transition-transform after:duration-300 hover:after:scale-x-100 lg:px-4 ${
+    isActive ? "bg-secondary text-secondary-foreground after:scale-x-100" : "text-steel hover:bg-muted hover:text-ink"
   }`;
 
 const differentials: IconItem[] = [
@@ -141,15 +141,15 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header
-        className={`sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-xl transition-shadow duration-300 ease-out ${
-          hasScrolled ? "shadow-card" : "shadow-none"
+        className={`sticky top-0 z-40 border-b border-border bg-surface/98 backdrop-blur-xl transition-shadow duration-300 ease-out ${
+          hasScrolled ? "shadow-card" : "shadow-[0_10px_30px_-24px_hsl(var(--hero)/0.45)]"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-4 py-3 md:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-5 md:px-8 md:py-6">
           <Link to="/" className="flex shrink-0 items-center" aria-label="Ir para a Home da DS Pharma" onClick={() => setIsMobileMenuOpen(false)}>
-            <img src={dsPharmaLogo} alt="DS Pharma" className="h-10 w-auto object-contain md:h-12" width={320} height={168} />
+            <img src={dsPharmaLogo} alt="DS Pharma" className="h-12 w-auto object-contain sm:h-14 lg:h-16" width={320} height={168} />
           </Link>
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
+          <nav className="hidden min-w-0 flex-1 items-center justify-end gap-1 md:flex lg:gap-2" aria-label="Navegação principal">
             {navItems.map((item) => (
               <NavLink key={item.to} to={item.to} className={headerNavClass}>
                 {item.label}
@@ -157,13 +157,13 @@ function Layout({ children }: { children: React.ReactNode }) {
             ))}
           </nav>
           <div className="hidden items-center lg:flex">
-            <Button asChild variant="hero" size="sm">
+            <Button asChild variant="hero" size="lg" className="rounded-md px-5">
               <Link to="/cadastro-b2b">Solicitar cadastro empresarial</Link>
             </Button>
           </div>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-surface text-ink transition-colors hover:bg-secondary hover:text-primary lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-md border border-border bg-surface text-ink shadow-sm transition-colors hover:bg-secondary hover:text-primary md:hidden"
             aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen((open) => !open)}
@@ -172,7 +172,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           </button>
         </div>
         {isMobileMenuOpen && (
-          <div className="border-t border-border bg-surface px-4 py-4 shadow-card lg:hidden">
+          <div className="border-t border-border bg-surface px-4 py-5 shadow-card md:hidden">
             <nav className="mx-auto grid max-w-7xl gap-2" aria-label="Navegação mobile">
               {navItems.map((item) => (
                 <NavLink key={item.to} to={item.to} className={headerNavClass} onClick={() => setIsMobileMenuOpen(false)}>
