@@ -332,7 +332,7 @@ export function HomePage() {
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <SectionHeader eyebrow="Público atendido" title="Atuação B2B e institucional" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{audiences.map((item) => <IconCard key={item.title} item={item} />)}</div>
+          <AudienceCarousel />
         </div>
       </section>
 
