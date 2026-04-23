@@ -292,26 +292,26 @@ function AudienceCarousel() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border bg-surface">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-[1.3fr_1fr_1fr] md:px-8">
-        <div>
-          <Link to="/" className="mb-4 inline-flex items-center" aria-label="Ir para a Home da DS Pharma">
-            <img src={dsPharmaLogo} alt="DS Pharma" className="h-11 w-auto object-contain" width={320} height={168} />
+    <footer className="border-t border-border bg-surface-elevated">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:gap-12 md:grid-cols-[1.4fr_0.8fr_1fr] md:items-start md:justify-between md:px-8 lg:gap-20">
+        <div className="max-w-md">
+          <Link to="/" className="mb-5 inline-flex items-center" aria-label="Ir para a Home da DS Pharma">
+            <img src={dsPharmaLogo} alt="DS Pharma" className="h-12 w-auto object-contain" width={320} height={168} />
           </Link>
-          <p className="max-w-md leading-7 text-steel">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
+          <p className="leading-7 text-steel">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
         </div>
-        <div>
-          <h3 className="mb-3 font-semibold text-ink">Empresa</h3>
-          <div className="grid gap-2 text-sm text-steel">
-            <Link to="/institucional" className="hover:text-primary">Institucional</Link>
-            <Link to="/produtos" className="hover:text-primary">Produtos / Soluções</Link>
-            <Link to="/compliance" className="hover:text-primary">Compliance</Link>
+        <div className="md:justify-self-center">
+          <h3 className="mb-4 text-base font-semibold text-ink">Empresa</h3>
+          <div className="grid gap-3 text-sm text-steel">
+            <Link to="/institucional" className="transition-colors hover:text-primary">Institucional</Link>
+            <Link to="/produtos" className="transition-colors hover:text-primary">Produtos / Soluções</Link>
+            <Link to="/compliance" className="transition-colors hover:text-primary">Compliance</Link>
           </div>
         </div>
-        <div>
-          <h3 className="mb-3 font-semibold text-ink">Contato</h3>
-          <div className="grid gap-2 text-sm text-steel">
-            <span>comercial@dspharma.com.br</span>
+        <div className="md:justify-self-end md:text-left">
+          <h3 className="mb-4 text-base font-semibold text-ink">Contato</h3>
+          <div className="grid gap-3 text-sm text-steel">
+            <a href="mailto:comercial@dspharma.com.br" className="transition-colors hover:text-primary">comercial@dspharma.com.br</a>
             <span>Atendimento B2B e institucional</span>
           </div>
         </div>
