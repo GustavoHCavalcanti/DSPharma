@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import {
   ArrowRight,
@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import institutionalImage from "@/assets/ds-pharma-institutional.jpg";
 
 type IconItem = {
@@ -180,6 +181,81 @@ function IconCard({ item }: { item: IconItem }) {
   );
 }
 
+function AudienceCarousel() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const updateCarouselState = () => {
+      setCurrent(api.selectedScrollSnap());
+      setCount(api.scrollSnapList().length);
+    };
+
+    updateCarouselState();
+    api.on("select", updateCarouselState);
+    api.on("reInit", updateCarouselState);
+
+    return () => {
+      api.off("select", updateCarouselState);
+      api.off("reInit", updateCarouselState);
+    };
+  }, [api]);
+
+  return (
+    <div className="mx-auto max-w-6xl">
+      <Carousel
+        setApi={setApi}
+        opts={{ align: "start", containScroll: "trimSnaps", dragFree: false }}
+        className="px-0 lg:px-14"
+        aria-label="Públicos atendidos pela DS Pharma"
+      >
+        <CarouselContent className="-ml-4 py-2 md:-ml-5">
+          {audiences.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <CarouselItem key={item.title} className="basis-[88%] pl-4 sm:basis-1/2 md:pl-5 lg:basis-1/3">
+                <article className="group flex min-h-[210px] flex-col justify-between rounded-lg border border-border bg-card p-7 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-card">
+                  <div className="flex items-start justify-between gap-5">
+                    <div className="flex size-14 shrink-0 items-center justify-center rounded-md bg-secondary text-primary transition-transform duration-300 ease-out group-hover:scale-105">
+                      <Icon className="size-7" />
+                    </div>
+                    <span className="mt-1 h-1.5 w-10 rounded-full bg-primary/20 transition-colors duration-300 group-hover:bg-primary" />
+                  </div>
+                  <div className="pt-8">
+                    <h3 className="text-xl font-semibold tracking-normal text-ink">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-steel">Atendimento estruturado para demandas corporativas, técnicas e institucionais.</p>
+                  </div>
+                </article>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+        <CarouselPrevious className="left-0 hidden border-border bg-card text-ink shadow-card hover:border-primary hover:bg-secondary hover:text-primary lg:inline-flex" />
+        <CarouselNext className="right-0 hidden border-border bg-card text-ink shadow-card hover:border-primary hover:bg-secondary hover:text-primary lg:inline-flex" />
+      </Carousel>
+
+      <div className="mt-8 flex items-center justify-center gap-2" aria-label="Indicadores do carrossel">
+        {Array.from({ length: count }).map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => api?.scrollTo(index)}
+            className={`h-2 rounded-full transition-all duration-300 ease-out ${
+              current === index ? "w-8 bg-primary" : "w-2 bg-border hover:bg-primary/50"
+            }`}
+            aria-label={`Ir para posição ${index + 1}`}
+            aria-current={current === index ? "true" : undefined}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
@@ -256,7 +332,7 @@ export function HomePage() {
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <SectionHeader eyebrow="Público atendido" title="Atuação B2B e institucional" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{audiences.map((item) => <IconCard key={item.title} item={item} />)}</div>
+          <AudienceCarousel />
         </div>
       </section>
 
