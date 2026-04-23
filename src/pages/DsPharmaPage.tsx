@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 import {
   ArrowRight,
   BadgeCheck,
-  Balance,
   Boxes,
   Building2,
   CheckCircle2,
@@ -22,6 +21,7 @@ import {
   PackageCheck,
   Phone,
   Route,
+  Scale,
   ScrollText,
   ShieldCheck,
   Target,
@@ -113,7 +113,7 @@ const checklist: IconItem[] = [
   { icon: Building2, title: "Dados da empresa", text: "CNPJ, razão social, endereço e responsáveis." },
   { icon: ScrollText, title: "Regulatórios", text: "Licenças, autorizações e documentos aplicáveis." },
   { icon: Boxes, title: "Produtos", text: "Categorias, volumes e previsão de demanda." },
-  { icon: Balance, title: "Jurídico", text: "Contratos, termos e conformidade operacional." },
+  { icon: Scale, title: "Jurídico", text: "Contratos, termos e conformidade operacional." },
   { icon: Handshake, title: "Comercial", text: "Condições, canais e fluxo de atendimento." },
 ];
 
