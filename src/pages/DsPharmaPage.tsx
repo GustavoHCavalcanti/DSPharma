@@ -294,11 +294,11 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-surface-elevated">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-4 py-16 sm:grid-cols-[minmax(0,1.35fr)_minmax(150px,0.75fr)_minmax(220px,1fr)] sm:gap-10 md:px-8 lg:gap-24">
-        <div className="max-w-sm sm:pr-6">
-          <Link to="/" className="mb-6 inline-flex items-center" aria-label="Ir para a Home da DS Pharma">
-            <img src={dsPharmaLogo} alt="DS Pharma" className="h-14 w-auto object-contain sm:h-16" width={320} height={168} />
+        <div className="flex max-w-md items-start gap-4 sm:pr-6">
+          <Link to="/" className="inline-flex shrink-0 items-center" aria-label="Ir para a Home da DS Pharma">
+            <img src={dsPharmaLogo} alt="DS Pharma" className="h-12 w-auto object-contain sm:h-14" width={320} height={168} />
           </Link>
-          <p className="max-w-xs text-sm leading-6 text-steel">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
+          <p className="max-w-[15rem] pt-0.5 text-xs leading-5 text-steel sm:max-w-xs">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
         </div>
         <div className="sm:justify-self-center">
           <h3 className="mb-5 text-base font-semibold text-ink">Empresa</h3>
