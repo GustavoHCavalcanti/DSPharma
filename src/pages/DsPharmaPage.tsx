@@ -433,14 +433,16 @@ export function ProductsPage() {
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid gap-6 lg:grid-cols-3">
-            {products.map((product) => (
-              <article key={product.name} className="flex flex-col overflow-hidden rounded-lg border border-border bg-card p-3 shadow-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
-                <div className="relative overflow-hidden rounded-md">
-                  <img src={product.image} alt={product.imageAlt} loading="lazy" className={`h-44 w-full object-cover transition-transform duration-500 hover:scale-105 md:h-48 ${product.imagePosition}`} width={1600} height={1000} />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
-                </div>
-                <div className="flex flex-1 flex-col px-3 pb-3 pt-4"><h2 className="text-lg font-semibold text-ink">{product.name}</h2><p className="mt-2 text-sm leading-6 text-steel">{product.summary}</p><Button variant="premium" className="mt-4 self-start">Ver detalhes</Button></div>
-              </article>
+            {products.map((product, i) => (
+              <Reveal key={product.name} index={i} variant="up-sm">
+                <article className="flex flex-col overflow-hidden rounded-lg border border-border bg-card p-3 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
+                  <div className="relative overflow-hidden rounded-md">
+                    <img src={product.image} alt={product.imageAlt} loading="lazy" className={`h-44 w-full object-cover transition-transform duration-500 hover:scale-105 md:h-48 ${product.imagePosition}`} width={1600} height={1000} />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
+                  </div>
+                  <div className="flex flex-1 flex-col px-3 pb-3 pt-4"><h2 className="text-lg font-semibold text-ink">{product.name}</h2><p className="mt-2 text-sm leading-6 text-steel">{product.summary}</p><Button variant="premium" className="mt-4 self-start">Ver detalhes</Button></div>
+                </article>
+              </Reveal>
             ))}
           </div>
           <ProductDetails />
