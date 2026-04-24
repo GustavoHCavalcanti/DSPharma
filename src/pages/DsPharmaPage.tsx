@@ -195,10 +195,10 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 function SectionHeader({ eyebrow, title, text }: { eyebrow?: string; title: string; text?: string }) {
   return (
-    <div className="mx-auto mb-12 max-w-3xl text-center">
-      {eyebrow && <p className="mb-3 text-sm font-semibold text-primary">{eyebrow}</p>}
-      <h2 className="text-3xl font-semibold tracking-normal text-ink md:text-4xl">{title}</h2>
-      {text && <p className="mt-4 text-base leading-7 text-steel md:text-lg">{text}</p>}
+    <div className="mx-auto mb-14 max-w-3xl text-center">
+      {eyebrow && <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-primary">{eyebrow}</p>}
+      <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">{title}</h2>
+      {text && <p className="mt-6 text-base leading-7 text-steel md:text-lg">{text}</p>}
     </div>
   );
 }
