@@ -103,6 +103,12 @@ All colors MUST be HSL.
   }
 }
 
+@layer components {
+  .section-title {
+    @apply text-4xl font-bold leading-tight tracking-tight md:text-5xl;
+  }
+}
+
 @layer utilities {
   .brand-gradient {
     background: var(--gradient-brand);

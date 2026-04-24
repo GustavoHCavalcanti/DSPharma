@@ -211,11 +211,11 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-function SectionHeader({ eyebrow, title, text }: { eyebrow?: string; title: string; text?: string }) {
+function SectionHeader({ eyebrow, title, text, titleClassName }: { eyebrow?: string; title: string; text?: string; titleClassName?: string }) {
   return (
     <div className="mx-auto mb-14 max-w-3xl text-center">
       {eyebrow && <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-primary">{eyebrow}</p>}
-      <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">{title}</h2>
+      <h2 className={`section-title text-ink ${titleClassName ?? ""}`}>{title}</h2>
       {text && <p className="mt-6 text-base leading-7 text-steel md:text-lg">{text}</p>}
     </div>
   );
@@ -365,8 +365,8 @@ export function HomePage() {
 
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <Reveal as="h2" className="text-center text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">Institucional</Reveal>
-          <div className="mt-12 grid grid-cols-1 items-center gap-10 sm:grid-cols-2 md:gap-14">
+          <Reveal><SectionHeader eyebrow="Institucional"  titleClassName="text-primary" /></Reveal>
+          <div className="grid grid-cols-1 items-center gap-10 sm:grid-cols-2 md:gap-14">
             <Reveal className="min-w-0" delay={80}>
               <h3 className="text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl">Operação dedicada ao mercado corporativo</h3>
               <p className="mt-5 text-base leading-7 text-steel sm:text-lg sm:leading-8">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
