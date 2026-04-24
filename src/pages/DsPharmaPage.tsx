@@ -311,14 +311,14 @@ function AudienceCarousel() {
 function Footer() {
   return (
     <footer className="border-t border-border bg-surface-elevated">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-4 py-16 sm:grid-cols-[minmax(280px,1.5fr)_minmax(150px,0.75fr)_minmax(220px,1fr)] sm:gap-12 md:px-8 lg:gap-20">
-        <div className="flex flex-col items-center text-center sm:items-center">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-4 py-16 sm:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_minmax(0,1.2fr)] sm:gap-8 md:px-8 lg:gap-16">
+        <div className="flex flex-col items-center text-center min-w-0">
           <Link to="/" className="inline-flex items-center" aria-label="Ir para a Home da DS Pharma">
             <img src={dsPharmaLogo} alt="DS Pharma" className="h-9 w-auto object-contain sm:h-10" width={320} height={168} />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-6 text-steel">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
         </div>
-        <div className="sm:justify-self-center">
+        <div className="min-w-0 sm:justify-self-center">
           <h3 className="mb-5 text-base font-semibold text-ink">Empresa</h3>
           <div className="grid gap-3.5 text-sm text-steel">
             <Link to="/institucional" className="transition-colors hover:text-primary">Institucional</Link>
@@ -326,10 +326,10 @@ function Footer() {
             <Link to="/compliance" className="transition-colors hover:text-primary">Compliance</Link>
           </div>
         </div>
-        <div className="sm:justify-self-end sm:text-left">
+        <div className="min-w-0 sm:justify-self-end sm:text-left">
           <h3 className="mb-5 text-base font-semibold text-ink">Contato</h3>
           <div className="grid gap-3.5 text-sm text-steel">
-            <a href="mailto:comercial@dspharma.com.br" className="transition-colors hover:text-primary">comercial@dspharma.com.br</a>
+            <a href="mailto:comercial@dspharma.com.br" className="break-all transition-colors hover:text-primary">comercial@dspharma.com.br</a>
             <span>Atendimento B2B e institucional</span>
           </div>
         </div>
