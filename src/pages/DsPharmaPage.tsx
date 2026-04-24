@@ -34,7 +34,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import heroLabImage from "@/assets/ds-pharma-hero-lab.jpg";
-import institutionalImage from "@/assets/ds-pharma-institutional.jpg";
+import institutionalImage from "@/assets/ds-pharma-institutional-handshake.jpg";
+import institutionalHeroImage from "@/assets/ds-pharma-lab-microscope.jpg";
 import dsPharmaLogo from "@/assets/ds-pharma-logo.png";
 
 type IconItem = {
