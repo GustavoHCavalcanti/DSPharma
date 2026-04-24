@@ -361,7 +361,7 @@ export function HomePage() {
       <section className="noise-texture bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <SectionHeader eyebrow="Diferenciais" title="Controle, documentação e suporte em cada etapa" />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{differentials.map((item) => <IconCard key={item.title} item={item} />)}</div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:grid-rows-2">{differentials.map((item) => <IconCard key={item.title} item={item} />)}</div>
         </div>
       </section>
 
