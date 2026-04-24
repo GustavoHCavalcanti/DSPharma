@@ -348,12 +348,12 @@ export function HomePage() {
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <p className="mb-3 text-center text-sm font-semibold text-primary">Institucional</p>
-          <div className="mt-10 grid items-center gap-12 md:grid-cols-2">
-            <div>
-              <h2 className="text-3xl font-bold leading-tight tracking-tight text-ink md:text-4xl">Operação dedicada ao mercado corporativo</h2>
-              <p className="mt-5 text-lg leading-8 text-steel">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
+          <div className="mt-10 grid grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-10 md:gap-12">
+            <div className="min-w-0">
+              <h2 className="text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl">Operação dedicada ao mercado corporativo</h2>
+              <p className="mt-5 text-base leading-7 text-steel sm:text-lg sm:leading-8">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
             </div>
-            <img src={institutionalImage} alt="Equipe farmacêutica em ambiente técnico de logística" loading="lazy" className="h-[360px] w-full rounded-lg object-cover shadow-card" width={1600} height={1000} />
+            <img src={institutionalImage} alt="Equipe farmacêutica em ambiente técnico de logística" loading="lazy" className="h-[260px] w-full rounded-lg object-cover shadow-card sm:h-[320px] md:h-[360px]" width={1600} height={1000} />
           </div>
         </div>
       </section>
