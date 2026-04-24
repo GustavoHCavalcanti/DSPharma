@@ -352,13 +352,13 @@ export function HomePage() {
         <div className="absolute inset-0 bg-hero/64" />
         <div className="absolute inset-0 bg-gradient-to-r from-hero via-hero/76 to-hero/20" />
         <div className="relative mx-auto flex min-h-[calc(100vh-112px)] max-w-7xl items-center px-4 py-16 md:min-h-[620px] md:px-8 md:py-20">
-          <div className="max-w-3xl animate-fade-up text-left">
-            <h1 className="text-4xl font-bold leading-tight tracking-normal md:text-6xl md:leading-tight">Canabidiol com procedência, conformidade e segurança para o seu negócio</h1>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-hero-foreground/86 md:text-lg md:leading-8">A DS Pharma é uma importadora e distribuidora especializada no fornecimento de canabidiol para empresas, com rigor técnico, controle de qualidade e atuação alinhada às normas brasileiras.</p>
-            <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+          <div className="max-w-3xl text-left">
+            <Reveal as="h1" className="text-4xl font-bold leading-tight tracking-normal md:text-6xl md:leading-tight">Canabidiol com procedência, conformidade e segurança para o seu negócio</Reveal>
+            <Reveal as="p" delay={120} className="mt-6 max-w-2xl text-base leading-7 text-hero-foreground/86 md:text-lg md:leading-8">A DS Pharma é uma importadora e distribuidora especializada no fornecimento de canabidiol para empresas, com rigor técnico, controle de qualidade e atuação alinhada às normas brasileiras.</Reveal>
+            <Reveal delay={260} className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
               <Button asChild variant="hero" size="xl" className="w-full sm:w-auto"><Link to="/cadastro-b2b">Solicitar cadastro empresarial <ArrowRight className="size-4" /></Link></Button>
               <Button asChild variant="glass" size="xl" className="w-full sm:w-auto"><Link to="/contato">Falar com o time comercial</Link></Button>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
