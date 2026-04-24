@@ -488,7 +488,7 @@ export function CompliancePage() {
 
 function Traceability() {
   const steps: IconItem[] = [{ icon: MapPinned, title: "Origem" }, { icon: Route, title: "Transporte" }, { icon: Boxes, title: "Armazenamento" }, { icon: CheckCircle2, title: "Entrega" }];
-  return <section className="mt-12 rounded-lg bg-secondary p-8"><h2 className="mb-8 text-2xl font-semibold text-ink">Rastreabilidade</h2><div className="grid gap-4 md:grid-cols-4">{steps.map((step) => <IconCard key={step.title} item={step} />)}</div></section>;
+  return <section className="mt-12 rounded-lg bg-secondary p-8"><Reveal as="h2" className="mb-8 text-2xl font-semibold text-ink">Rastreabilidade</Reveal><div className="grid gap-4 md:grid-cols-4">{steps.map((step, i) => <Reveal key={step.title} index={i} variant="up-sm"><IconCard item={step} /></Reveal>)}</div></section>;
 }
 
 export function B2BRegisterPage() {
