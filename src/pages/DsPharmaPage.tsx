@@ -165,7 +165,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-5 md:px-8 md:py-6">
           <Link to="/" className="flex shrink-0 items-center" aria-label="Ir para a Home da DS Pharma" onClick={() => setIsMobileMenuOpen(false)}>
-            <img src={dsPharmaLogo} alt="DS Pharma" className="h-12 w-auto object-contain sm:h-14 lg:h-16" width={320} height={168} />
+            <img src={dsPharmaLogo} alt="DS Pharma" className="h-8 w-auto object-contain sm:h-10 lg:h-11" width={320} height={168} />
           </Link>
           <nav className="hidden min-w-0 flex-1 items-center justify-end gap-1 md:flex lg:gap-2" aria-label="Navegação principal">
             {navItems.map((item) => (
@@ -311,12 +311,12 @@ function AudienceCarousel() {
 function Footer() {
   return (
     <footer className="border-t border-border bg-surface-elevated">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-4 py-16 sm:grid-cols-[minmax(0,1.35fr)_minmax(150px,0.75fr)_minmax(220px,1fr)] sm:gap-10 md:px-8 lg:gap-24">
-        <div className="flex max-w-md items-start gap-4 sm:pr-6">
-          <Link to="/" className="inline-flex shrink-0 items-center" aria-label="Ir para a Home da DS Pharma">
-            <img src={dsPharmaLogo} alt="DS Pharma" className="h-12 w-auto object-contain sm:h-14" width={320} height={168} />
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-4 py-16 sm:grid-cols-[minmax(280px,1.5fr)_minmax(150px,0.75fr)_minmax(220px,1fr)] sm:gap-12 md:px-8 lg:gap-20">
+        <div className="flex flex-col items-center text-center sm:items-center">
+          <Link to="/" className="inline-flex items-center" aria-label="Ir para a Home da DS Pharma">
+            <img src={dsPharmaLogo} alt="DS Pharma" className="h-9 w-auto object-contain sm:h-10" width={320} height={168} />
           </Link>
-          <p className="max-w-[15rem] pt-0.5 text-xs leading-5 text-steel sm:max-w-xs">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
+          <p className="mt-4 max-w-xs text-sm leading-6 text-steel">Importadora e distribuidora especializada no fornecimento de canabidiol para pessoas jurídicas no Brasil.</p>
         </div>
         <div className="sm:justify-self-center">
           <h3 className="mb-5 text-base font-semibold text-ink">Empresa</h3>
