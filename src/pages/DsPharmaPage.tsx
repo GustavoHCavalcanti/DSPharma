@@ -224,7 +224,7 @@ function SectionHeader({ eyebrow, title, text }: { eyebrow?: string; title: stri
 function IconCard({ item }: { item: IconItem }) {
   const Icon = item.icon;
   return (
-    <article className="group rounded-lg border border-border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
+    <article className="group rounded-lg border border-border bg-card p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-card">
       <div className="mb-5 flex size-12 items-center justify-center rounded-md bg-secondary text-primary transition-transform duration-300 group-hover:scale-105">
         <Icon className="size-6" />
       </div>
