@@ -415,8 +415,8 @@ export function InstitutionalPage() {
   return (
     <Layout>
       <PageHero title="Estrutura sólida e operação responsável" text="Modelo institucional focado em empresas, controle técnico e distribuição alinhada às normas brasileiras." />
-      <section className="bg-surface py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><p className="text-lg leading-8 text-steel">A DS Pharma combina processos de importação, documentação técnica e distribuição especializada para atender pessoas jurídicas com previsibilidade, segurança e organização.</p></div></section>
-      <section className="bg-background py-20"><div className="mx-auto max-w-7xl px-4 md:px-8"><SectionHeader title="Missão, visão e valores" /><div className="grid gap-5 md:grid-cols-3">{pillars.map((item) => <IconCard key={item.title} item={item} />)}</div></div></section>
+      <section className="bg-background py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><Reveal as="p" className="text-lg leading-8 text-steel">A DS Pharma combina processos de importação, documentação técnica e distribuição especializada para atender pessoas jurídicas com previsibilidade, segurança e organização.</Reveal></div></section>
+      <section className="bg-background py-20"><div className="mx-auto max-w-7xl px-4 md:px-8"><Reveal><SectionHeader title="Missão, visão e valores" /></Reveal><div className="grid gap-5 md:grid-cols-3">{pillars.map((item, i) => <Reveal key={item.title} index={i} variant="up-sm"><IconCard item={item} /></Reveal>)}</div></div></section>
     </Layout>
   );
 }
