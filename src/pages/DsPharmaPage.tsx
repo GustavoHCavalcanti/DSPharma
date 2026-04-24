@@ -348,7 +348,7 @@ export function HomePage() {
 
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h2 className="text-center text-3xl font-semibold leading-tight tracking-tight text-primary md:text-4xl">Institucional</h2>
+          <h2 className="text-center text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">Institucional</h2>
           <div className="mt-12 grid grid-cols-1 items-center gap-10 sm:grid-cols-2 md:gap-14">
             <div className="min-w-0">
               <h3 className="text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl">Operação dedicada ao mercado corporativo</h3>
