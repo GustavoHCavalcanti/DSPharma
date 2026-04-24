@@ -489,5 +489,5 @@ function ComplianceCta() {
 }
 
 function PageHero({ title, text }: { title: string; text: string }) {
-  return <section className="relative overflow-hidden bg-hero py-24 text-hero-foreground"><img src={institutionalImage} alt="Operação farmacêutica institucional" className="absolute inset-0 h-full w-full object-cover opacity-30" width={1600} height={1000} /><div className="hero-overlay absolute inset-0" /><div className="relative mx-auto max-w-7xl px-4 md:px-8"><h1 className="max-w-3xl text-4xl font-bold tracking-normal md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-hero-foreground/82">{text}</p></div></section>;
+  return <section className="relative overflow-hidden bg-hero py-24 text-hero-foreground"><img src={institutionalHeroImage} alt="Laboratório farmacêutico com microscópios em operação" className="absolute inset-0 h-full w-full object-cover object-center opacity-40" width={1600} height={1000} /><div className="hero-overlay absolute inset-0" /><div className="relative mx-auto max-w-7xl px-4 md:px-8"><h1 className="max-w-3xl text-4xl font-bold tracking-normal md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-hero-foreground/82">{text}</p></div></section>;
 }
