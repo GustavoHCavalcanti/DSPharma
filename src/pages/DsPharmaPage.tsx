@@ -345,16 +345,14 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-surface py-16">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h2 className="text-center text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Institucional</h2>
-          <div className="mt-10 grid items-center gap-10 md:grid-cols-2 md:gap-12">
-            <div className="order-2 md:order-1">
-              <h3 className="text-2xl font-semibold leading-tight text-ink md:text-3xl">Operação dedicada ao mercado corporativo</h3>
-              <p className="mt-4 text-base leading-7 text-steel md:text-lg md:leading-8">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
-            </div>
-            <img src={institutionalImage} alt="Equipe farmacêutica em ambiente técnico de logística" loading="lazy" className="order-1 h-64 w-full rounded-lg object-cover shadow-card md:order-2 md:h-80" width={1600} height={1000} />
+      <section className="bg-surface py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 md:px-8">
+          <div>
+            <p className="mb-3 text-sm font-semibold text-primary">Institucional</p>
+            <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Operação dedicada ao mercado corporativo</h2>
+            <p className="mt-5 text-lg leading-8 text-steel">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
           </div>
+          <img src={institutionalImage} alt="Equipe farmacêutica em ambiente técnico de logística" loading="lazy" className="h-[420px] w-full rounded-lg object-cover shadow-card" width={1600} height={1000} />
         </div>
       </section>
 
