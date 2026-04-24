@@ -36,6 +36,10 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import heroLabImage from "@/assets/ds-pharma-hero-lab.jpg";
 import institutionalImage from "@/assets/ds-pharma-institutional-handshake.jpg";
 import institutionalHeroImage from "@/assets/ds-pharma-lab-microscope.jpg";
+import productsHeroImage from "@/assets/ds-pharma-products-hero.jpg";
+import productStandardImage from "@/assets/ds-pharma-product-standard.jpg";
+import productGovernmentImage from "@/assets/ds-pharma-product-government.jpg";
+import productDistributorImage from "@/assets/ds-pharma-product-distributor.jpg";
 import dsPharmaLogo from "@/assets/ds-pharma-logo.png";
 
 type IconItem = {
@@ -81,6 +85,9 @@ const products = [
     concentration: "Conforme especificação comercial",
     format: "Importação e distribuição empresarial",
     docs: "Ficha técnica, laudos e certificados aplicáveis",
+    image: productStandardImage,
+    imageAlt: "Óleo de canabidiol sendo gotejado de pipeta sobre frasco de vidro",
+    imagePosition: "object-center",
   },
   {
     name: "Linha Governamental",
@@ -88,6 +95,9 @@ const products = [
     concentration: "Sob demanda regulatória",
     format: "Distribuição para programas e instituições",
     docs: "Dossiê técnico e documentação de conformidade",
+    image: productGovernmentImage,
+    imageAlt: "Equipe corporativa em reunião institucional analisando indicadores",
+    imagePosition: "object-center",
   },
   {
     name: "Solução Distribuidor",
@@ -95,6 +105,9 @@ const products = [
     concentration: "Portfólio consultivo",
     format: "Fornecimento recorrente B2B",
     docs: "Pacote técnico por categoria de produto",
+    image: productDistributorImage,
+    imageAlt: "Apresentação de dados em sala de reunião com parceiros distribuidores",
+    imagePosition: "object-center",
   },
 ];
 
@@ -403,13 +416,18 @@ export function InstitutionalPage() {
 export function ProductsPage() {
   return (
     <Layout>
-      <PageHero title="Soluções com controle e procedência" text="Portfólio corporativo para fornecimento, distribuição e atendimento institucional de canabidiol." />
+      <PageHero
+        title="Soluções com controle e procedência"
+        text="Portfólio corporativo para fornecimento, distribuição e atendimento institucional de canabidiol."
+        image={productsHeroImage}
+        imageAlt="Estoque farmacêutico organizado com prateleiras de medicamentos"
+      />
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid gap-6 lg:grid-cols-3">
             {products.map((product) => (
-              <article key={product.name} className="rounded-lg border border-border bg-card shadow-card transition-all hover:-translate-y-1 hover:border-primary/40">
-                <img src={institutionalImage} alt={`Imagem representativa de ${product.name}`} loading="lazy" className="h-48 w-full rounded-t-lg object-cover" width={1600} height={1000} />
+              <article key={product.name} className="overflow-hidden rounded-lg border border-border bg-card shadow-card transition-all hover:-translate-y-1 hover:border-primary/40">
+                <img src={product.image} alt={product.imageAlt} loading="lazy" className={`aspect-[16/10] w-full object-cover ${product.imagePosition}`} width={1600} height={1000} />
                 <div className="p-6"><h2 className="text-xl font-semibold text-ink">{product.name}</h2><p className="mt-3 leading-7 text-steel">{product.summary}</p><Button variant="premium" className="mt-5">Ver detalhes</Button></div>
               </article>
             ))}
@@ -488,6 +506,8 @@ function ComplianceCta() {
   return <section className="bg-secondary py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><LockKeyhole className="mx-auto mb-5 size-12 text-primary" /><h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Compliance como base da operação</h2><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-steel">Trabalhamos com rigor técnico e documentação completa, garantindo segurança jurídica e operacional para nossos parceiros</p><Button asChild variant="premium" size="xl" className="mt-8"><Link to="/compliance">Ver documentação e certificações</Link></Button></div></section>;
 }
 
-function PageHero({ title, text }: { title: string; text: string }) {
-  return <section className="relative overflow-hidden bg-hero py-24 text-hero-foreground"><img src={institutionalHeroImage} alt="Laboratório farmacêutico com microscópios em operação" className="absolute inset-0 h-full w-full object-cover object-center opacity-40" width={1600} height={1000} /><div className="hero-overlay absolute inset-0" /><div className="relative mx-auto max-w-7xl px-4 md:px-8"><h1 className="max-w-3xl text-4xl font-bold tracking-normal md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-hero-foreground/82">{text}</p></div></section>;
+function PageHero({ title, text, image, imageAlt }: { title: string; text: string; image?: string; imageAlt?: string }) {
+  const bg = image ?? institutionalHeroImage;
+  const alt = imageAlt ?? "Laboratório farmacêutico com microscópios em operação";
+  return <section className="relative overflow-hidden bg-hero py-24 text-hero-foreground"><img src={bg} alt={alt} className="absolute inset-0 h-full w-full object-cover object-center opacity-40" width={1600} height={1000} /><div className="hero-overlay absolute inset-0" /><div className="relative mx-auto max-w-7xl px-4 md:px-8"><h1 className="max-w-3xl text-4xl font-bold tracking-normal md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-hero-foreground/82">{text}</p></div></section>;
 }
