@@ -40,6 +40,9 @@ import productsHeroImage from "@/assets/ds-pharma-products-hero.jpg";
 import productStandardImage from "@/assets/ds-pharma-product-standard.jpg";
 import productGovernmentImage from "@/assets/ds-pharma-product-government.jpg";
 import productDistributorImage from "@/assets/ds-pharma-product-distributor.jpg";
+import complianceHeroImage from "@/assets/ds-pharma-compliance-hero.jpg";
+import b2bHeroImage from "@/assets/ds-pharma-b2b-hero.jpg";
+import contactHeroImage from "@/assets/ds-pharma-contact-hero.jpg";
 import dsPharmaLogo from "@/assets/ds-pharma-logo.png";
 
 type IconItem = {
@@ -462,7 +465,7 @@ export function CompliancePage() {
   const CurrentIcon = current.icon;
   return (
     <Layout>
-      <PageHero title="Conformidade e transparência em cada etapa" text="Documentação organizada para apoiar decisões técnicas, jurídicas e comerciais." />
+      <PageHero title="Conformidade e transparência em cada etapa" text="Documentação organizada para apoiar decisões técnicas, jurídicas e comerciais." image={complianceHeroImage} imageAlt="Selo institucional de laboratórios credenciados" objectFit="contain" imageOpacity={0.18} />
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
@@ -486,7 +489,7 @@ export function B2BRegisterPage() {
   const submit = (event: FormEvent) => { event.preventDefault(); setStep(3); };
   return (
     <Layout>
-      <PageHero title="Solicitação de cadastro empresarial" text="Fluxo inicial para análise comercial e documental de parceiros B2B." />
+      <PageHero title="Solicitação de cadastro empresarial" text="Fluxo inicial para análise comercial e documental de parceiros B2B." image={b2bHeroImage} imageAlt="Escritório corporativo iluminado, ambiente de negócios B2B" />
       <section className="bg-background py-20"><div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-[0.8fr_1.2fr] md:px-8"><div><SectionHeader title="Checklist de informações obrigatórias" text="Blocos organizados para agilizar a análise empresarial." /> <div className="grid gap-4">{checklist.map((item) => <IconCard key={item.title} item={item} />)}</div></div><form onSubmit={submit} className="rounded-lg border border-border bg-card p-6 shadow-card"><div className="mb-6 flex gap-2">{[1,2,3].map((item) => <span key={item} className={`h-2 flex-1 rounded-full ${item <= step ? "bg-primary" : "bg-border"}`} />)}</div>{step === 1 && <FormStep title="Dados da empresa" fields={["Razão social", "CNPJ", "Segmento", "Volume estimado"]} onNext={() => setStep(2)} />}{step === 2 && <FormStep title="Contato" fields={["Nome do responsável", "E-mail corporativo", "Telefone", "Mensagem"]} onNext={() => setStep(3)} submit />}{step === 3 && <div className="py-12 text-center"><CheckCircle2 className="mx-auto mb-5 size-14 text-primary" /><h2 className="text-2xl font-semibold text-ink">Cadastro recebido</h2><p className="mt-3 text-steel">O time comercial retornará com as próximas etapas de análise.</p></div>}</form></div></section>
     </Layout>
   );
@@ -499,7 +502,7 @@ function FormStep({ title, fields, onNext, submit }: { title: string; fields: st
 export function ContactPage() {
   return (
     <Layout>
-      <PageHero title="Fale com a DS Pharma" text="Atendimento comercial especializado para empresas, distribuidores e instituições." />
+      <PageHero title="Fale com a DS Pharma" text="Atendimento comercial especializado para empresas, distribuidores e instituições." image={contactHeroImage} imageAlt="Equipe de atendimento comercial em operação" />
       <section className="bg-background py-20"><div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:px-8"><div className="grid content-start gap-5">{[{ icon: Phone, title: "Telefone", text: "Atendimento comercial" }, { icon: Mail, title: "E-mail", text: "comercial@dspharma.com.br" }, { icon: MapPin, title: "Localização", text: "Brasil" }, { icon: Handshake, title: "WhatsApp", text: "Canal B2B" }].map((item) => <IconCard key={item.title} item={item} />)}</div><form className="rounded-lg border border-border bg-card p-6 shadow-card"><h2 className="mb-6 text-2xl font-semibold text-ink">Contato comercial</h2><div className="grid gap-4">{["Nome", "Empresa", "E-mail", "Telefone"].map((field) => <label key={field} className="grid gap-2 text-sm font-medium text-ink">{field}<input required className="h-11 rounded-md border border-input bg-background px-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20" /></label>)}<label className="grid gap-2 text-sm font-medium text-ink">Mensagem<textarea required className="min-h-32 rounded-md border border-input bg-background p-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20" /></label></div><Button variant="hero" className="mt-6">Enviar mensagem</Button></form></div></section>
     </Layout>
   );
@@ -509,8 +512,10 @@ function ComplianceCta() {
   return <section className="bg-secondary py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><LockKeyhole className="mx-auto mb-5 size-12 text-primary" /><h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Compliance como base da operação</h2><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-steel">Trabalhamos com rigor técnico e documentação completa, garantindo segurança jurídica e operacional para nossos parceiros</p><Button asChild variant="premium" size="xl" className="mt-8"><Link to="/compliance">Ver documentação e certificações</Link></Button></div></section>;
 }
 
-function PageHero({ title, text, image, imageAlt }: { title: string; text: string; image?: string; imageAlt?: string }) {
+function PageHero({ title, text, image, imageAlt, objectFit = "cover", imageOpacity }: { title: string; text: string; image?: string; imageAlt?: string; objectFit?: "cover" | "contain"; imageOpacity?: number }) {
   const bg = image ?? institutionalHeroImage;
   const alt = imageAlt ?? "Laboratório farmacêutico com microscópios em operação";
-  return <section className="relative overflow-hidden bg-hero py-24 text-hero-foreground"><img src={bg} alt={alt} className="absolute inset-0 h-full w-full object-cover object-center opacity-40" width={1600} height={1000} /><div className="hero-overlay absolute inset-0" /><div className="relative mx-auto max-w-7xl px-4 md:px-8"><h1 className="max-w-3xl text-4xl font-bold tracking-normal md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-hero-foreground/82">{text}</p></div></section>;
+  const fitClass = objectFit === "contain" ? "object-contain" : "object-cover";
+  const opacity = imageOpacity ?? 0.4;
+  return <section className="relative overflow-hidden bg-hero py-24 text-hero-foreground"><img src={bg} alt={alt} style={{ opacity }} className={`absolute inset-0 h-full w-full ${fitClass} object-center`} width={1600} height={1000} /><div className="hero-overlay absolute inset-0" /><div className="relative mx-auto max-w-7xl px-4 md:px-8"><h1 className="max-w-3xl text-4xl font-bold tracking-normal md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-hero-foreground/82">{text}</p></div></section>;
 }
