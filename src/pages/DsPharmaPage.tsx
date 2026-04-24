@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/Reveal";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import heroLabImage from "@/assets/ds-pharma-hero-lab.jpg";
 import institutionalImage from "@/assets/ds-pharma-institutional-handshake.jpg";
@@ -223,7 +224,7 @@ function SectionHeader({ eyebrow, title, text }: { eyebrow?: string; title: stri
 function IconCard({ item }: { item: IconItem }) {
   const Icon = item.icon;
   return (
-    <article className="group rounded-lg border border-border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
+    <article className="group rounded-lg border border-border bg-card p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-card">
       <div className="mb-5 flex size-12 items-center justify-center rounded-md bg-secondary text-primary transition-transform duration-300 group-hover:scale-105">
         <Icon className="size-6" />
       </div>
@@ -351,39 +352,43 @@ export function HomePage() {
         <div className="absolute inset-0 bg-hero/64" />
         <div className="absolute inset-0 bg-gradient-to-r from-hero via-hero/76 to-hero/20" />
         <div className="relative mx-auto flex min-h-[calc(100vh-112px)] max-w-7xl items-center px-4 py-16 md:min-h-[620px] md:px-8 md:py-20">
-          <div className="max-w-3xl animate-fade-up text-left">
-            <h1 className="text-4xl font-bold leading-tight tracking-normal md:text-6xl md:leading-tight">Canabidiol com procedência, conformidade e segurança para o seu negócio</h1>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-hero-foreground/86 md:text-lg md:leading-8">A DS Pharma é uma importadora e distribuidora especializada no fornecimento de canabidiol para empresas, com rigor técnico, controle de qualidade e atuação alinhada às normas brasileiras.</p>
-            <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+          <div className="max-w-3xl text-left">
+            <Reveal as="h1" className="text-4xl font-bold leading-tight tracking-normal md:text-6xl md:leading-tight">Canabidiol com procedência, conformidade e segurança para o seu negócio</Reveal>
+            <Reveal as="p" delay={120} className="mt-6 max-w-2xl text-base leading-7 text-hero-foreground/86 md:text-lg md:leading-8">A DS Pharma é uma importadora e distribuidora especializada no fornecimento de canabidiol para empresas, com rigor técnico, controle de qualidade e atuação alinhada às normas brasileiras.</Reveal>
+            <Reveal delay={260} className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
               <Button asChild variant="hero" size="xl" className="w-full sm:w-auto"><Link to="/cadastro-b2b">Solicitar cadastro empresarial <ArrowRight className="size-4" /></Link></Button>
               <Button asChild variant="glass" size="xl" className="w-full sm:w-auto"><Link to="/contato">Falar com o time comercial</Link></Button>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h2 className="text-center text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">Institucional</h2>
+          <Reveal as="h2" className="text-center text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">Institucional</Reveal>
           <div className="mt-12 grid grid-cols-1 items-center gap-10 sm:grid-cols-2 md:gap-14">
-            <div className="min-w-0">
+            <Reveal className="min-w-0" delay={80}>
               <h3 className="text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl">Operação dedicada ao mercado corporativo</h3>
               <p className="mt-5 text-base leading-7 text-steel sm:text-lg sm:leading-8">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
-            </div>
-            <img src={institutionalImage} alt="Profissionais da saúde firmando parceria corporativa" loading="lazy" className="h-[260px] w-full rounded-lg object-cover object-center shadow-card sm:h-[320px] md:h-[380px]" width={1600} height={1000} />
+            </Reveal>
+            <Reveal delay={180} variant="up-sm">
+              <img src={institutionalImage} alt="Profissionais da saúde firmando parceria corporativa" loading="lazy" className="h-[260px] w-full rounded-lg object-cover object-center shadow-card sm:h-[320px] md:h-[380px]" width={1600} height={1000} />
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="noise-texture bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <SectionHeader eyebrow="Diferenciais" title="Controle, documentação e suporte em cada etapa" />
+          <Reveal><SectionHeader eyebrow="Diferenciais" title="Controle, documentação e suporte em cada etapa" /></Reveal>
           <div
             className="mx-auto mt-10 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2"
             style={{ maxWidth: "1100px" }}
           >
-            {differentials.map((item) => (
-              <IconCard key={item.title} item={item} />
+            {differentials.map((item, i) => (
+              <Reveal key={item.title} index={i} variant="up-sm">
+                <IconCard item={item} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -391,8 +396,8 @@ export function HomePage() {
 
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <SectionHeader eyebrow="Público atendido" title="Atuação B2B e institucional" />
-          <AudienceCarousel />
+          <Reveal><SectionHeader eyebrow="Público atendido" title="Atuação B2B e institucional" /></Reveal>
+          <Reveal delay={120}><AudienceCarousel /></Reveal>
         </div>
       </section>
 
@@ -410,8 +415,8 @@ export function InstitutionalPage() {
   return (
     <Layout>
       <PageHero title="Estrutura sólida e operação responsável" text="Modelo institucional focado em empresas, controle técnico e distribuição alinhada às normas brasileiras." />
-      <section className="bg-surface py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><p className="text-lg leading-8 text-steel">A DS Pharma combina processos de importação, documentação técnica e distribuição especializada para atender pessoas jurídicas com previsibilidade, segurança e organização.</p></div></section>
-      <section className="bg-background py-20"><div className="mx-auto max-w-7xl px-4 md:px-8"><SectionHeader title="Missão, visão e valores" /><div className="grid gap-5 md:grid-cols-3">{pillars.map((item) => <IconCard key={item.title} item={item} />)}</div></div></section>
+      <section className="bg-surface py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><Reveal as="p" className="text-lg leading-8 text-steel">A DS Pharma combina processos de importação, documentação técnica e distribuição especializada para atender pessoas jurídicas com previsibilidade, segurança e organização.</Reveal></div></section>
+      <section className="bg-background py-20"><div className="mx-auto max-w-7xl px-4 md:px-8"><Reveal><SectionHeader title="Missão, visão e valores" /></Reveal><div className="grid gap-5 md:grid-cols-3">{pillars.map((item, i) => <Reveal key={item.title} index={i} variant="up-sm"><IconCard item={item} /></Reveal>)}</div></div></section>
     </Layout>
   );
 }
@@ -428,14 +433,16 @@ export function ProductsPage() {
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid gap-6 lg:grid-cols-3">
-            {products.map((product) => (
-              <article key={product.name} className="flex flex-col overflow-hidden rounded-lg border border-border bg-card p-3 shadow-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
-                <div className="relative overflow-hidden rounded-md">
-                  <img src={product.image} alt={product.imageAlt} loading="lazy" className={`h-44 w-full object-cover transition-transform duration-500 hover:scale-105 md:h-48 ${product.imagePosition}`} width={1600} height={1000} />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
-                </div>
-                <div className="flex flex-1 flex-col px-3 pb-3 pt-4"><h2 className="text-lg font-semibold text-ink">{product.name}</h2><p className="mt-2 text-sm leading-6 text-steel">{product.summary}</p><Button variant="premium" className="mt-4 self-start">Ver detalhes</Button></div>
-              </article>
+            {products.map((product, i) => (
+              <Reveal key={product.name} index={i} variant="up-sm">
+                <article className="flex flex-col overflow-hidden rounded-lg border border-border bg-card p-3 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
+                  <div className="relative overflow-hidden rounded-md">
+                    <img src={product.image} alt={product.imageAlt} loading="lazy" className={`h-44 w-full object-cover transition-transform duration-500 hover:scale-105 md:h-48 ${product.imagePosition}`} width={1600} height={1000} />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
+                  </div>
+                  <div className="flex flex-1 flex-col px-3 pb-3 pt-4"><h2 className="text-lg font-semibold text-ink">{product.name}</h2><p className="mt-2 text-sm leading-6 text-steel">{product.summary}</p><Button variant="premium" className="mt-4 self-start">Ver detalhes</Button></div>
+                </article>
+              </Reveal>
             ))}
           </div>
           <ProductDetails />
@@ -469,8 +476,8 @@ export function CompliancePage() {
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="grid gap-3">{complianceTabs.map((tab) => <button key={tab.key} onClick={() => setActive(tab.key)} className={`flex items-center gap-3 rounded-md border p-4 text-left font-medium transition-all ${active === tab.key ? "border-primary bg-secondary text-secondary-foreground" : "border-border bg-card text-steel hover:border-primary/40 hover:text-ink"}`}><tab.icon className="size-5" />{tab.label}</button>)}</div>
-            <div className="rounded-lg border border-border bg-card p-8 shadow-card"><CurrentIcon className="mb-5 size-10 text-primary" /><h2 className="text-2xl font-semibold text-ink">{current.label}</h2><div className="mt-6 grid gap-3">{current.items.map((item) => <div key={item} className="flex items-center justify-between rounded-md border border-border bg-surface-elevated p-4"><span className="font-medium text-ink">{item}</span><Button variant="outline" size="sm">Visualizar</Button></div>)}</div></div>
+            <div className="grid gap-3">{complianceTabs.map((tab, i) => <Reveal key={tab.key} index={i} variant="up-sm"><button onClick={() => setActive(tab.key)} className={`flex w-full items-center gap-3 rounded-md border p-4 text-left font-medium transition-all duration-300 ease-out ${active === tab.key ? "border-primary bg-secondary text-secondary-foreground shadow-card" : "border-border bg-card text-steel hover:border-primary/40 hover:text-ink hover:shadow-card"}`}><tab.icon className="size-5" />{tab.label}</button></Reveal>)}</div>
+            <Reveal delay={120}><div className="rounded-lg border border-border bg-card p-8 shadow-card"><CurrentIcon className="mb-5 size-10 text-primary" /><h2 className="text-2xl font-semibold text-ink">{current.label}</h2><div className="mt-6 grid gap-3">{current.items.map((item) => <div key={item} className="flex items-center justify-between rounded-md border border-border bg-surface-elevated p-4 transition-colors hover:border-primary/40"><span className="font-medium text-ink">{item}</span><Button variant="outline" size="sm">Visualizar</Button></div>)}</div></div></Reveal>
           </div>
           <Traceability />
         </div>
@@ -481,7 +488,7 @@ export function CompliancePage() {
 
 function Traceability() {
   const steps: IconItem[] = [{ icon: MapPinned, title: "Origem" }, { icon: Route, title: "Transporte" }, { icon: Boxes, title: "Armazenamento" }, { icon: CheckCircle2, title: "Entrega" }];
-  return <section className="mt-12 rounded-lg bg-secondary p-8"><h2 className="mb-8 text-2xl font-semibold text-ink">Rastreabilidade</h2><div className="grid gap-4 md:grid-cols-4">{steps.map((step) => <IconCard key={step.title} item={step} />)}</div></section>;
+  return <section className="mt-12 rounded-lg bg-secondary p-8"><Reveal as="h2" className="mb-8 text-2xl font-semibold text-ink">Rastreabilidade</Reveal><div className="grid gap-4 md:grid-cols-4">{steps.map((step, i) => <Reveal key={step.title} index={i} variant="up-sm"><IconCard item={step} /></Reveal>)}</div></section>;
 }
 
 export function B2BRegisterPage() {
@@ -509,7 +516,7 @@ export function ContactPage() {
 }
 
 function ComplianceCta() {
-  return <section className="bg-secondary py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><LockKeyhole className="mx-auto mb-5 size-12 text-primary" /><h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Compliance como base da operação</h2><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-steel">Trabalhamos com rigor técnico e documentação completa, garantindo segurança jurídica e operacional para nossos parceiros</p><Button asChild variant="premium" size="xl" className="mt-8"><Link to="/compliance">Ver documentação e certificações</Link></Button></div></section>;
+  return <section className="bg-secondary py-20"><Reveal className="mx-auto max-w-4xl px-4 text-center md:px-8"><LockKeyhole className="mx-auto mb-5 size-12 text-primary" /><h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Compliance como base da operação</h2><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-steel">Trabalhamos com rigor técnico e documentação completa, garantindo segurança jurídica e operacional para nossos parceiros</p><Button asChild variant="premium" size="xl" className="mt-8"><Link to="/compliance">Ver documentação e certificações</Link></Button></Reveal></section>;
 }
 
 function PageHero({ title, text, image, imageAlt, objectFit = "cover", imageOpacity }: { title: string; text: string; image?: string; imageAlt?: string; objectFit?: "cover" | "contain"; imageOpacity?: number }) {
