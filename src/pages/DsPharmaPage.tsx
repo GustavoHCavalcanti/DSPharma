@@ -516,7 +516,7 @@ export function ContactPage() {
 }
 
 function ComplianceCta() {
-  return <section className="bg-secondary py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><LockKeyhole className="mx-auto mb-5 size-12 text-primary" /><h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Compliance como base da operação</h2><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-steel">Trabalhamos com rigor técnico e documentação completa, garantindo segurança jurídica e operacional para nossos parceiros</p><Button asChild variant="premium" size="xl" className="mt-8"><Link to="/compliance">Ver documentação e certificações</Link></Button></div></section>;
+  return <section className="bg-secondary py-20"><Reveal className="mx-auto max-w-4xl px-4 text-center md:px-8"><LockKeyhole className="mx-auto mb-5 size-12 text-primary" /><h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Compliance como base da operação</h2><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-steel">Trabalhamos com rigor técnico e documentação completa, garantindo segurança jurídica e operacional para nossos parceiros</p><Button asChild variant="premium" size="xl" className="mt-8"><Link to="/compliance">Ver documentação e certificações</Link></Button></Reveal></section>;
 }
 
 function PageHero({ title, text, image, imageAlt, objectFit = "cover", imageOpacity }: { title: string; text: string; image?: string; imageAlt?: string; objectFit?: "cover" | "contain"; imageOpacity?: number }) {
