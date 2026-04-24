@@ -365,26 +365,30 @@ export function HomePage() {
 
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h2 className="text-center text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">Institucional</h2>
+          <Reveal as="h2" className="text-center text-4xl font-bold leading-tight tracking-tight text-primary md:text-5xl">Institucional</Reveal>
           <div className="mt-12 grid grid-cols-1 items-center gap-10 sm:grid-cols-2 md:gap-14">
-            <div className="min-w-0">
+            <Reveal className="min-w-0" delay={80}>
               <h3 className="text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl">Operação dedicada ao mercado corporativo</h3>
               <p className="mt-5 text-base leading-7 text-steel sm:text-lg sm:leading-8">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
-            </div>
-            <img src={institutionalImage} alt="Profissionais da saúde firmando parceria corporativa" loading="lazy" className="h-[260px] w-full rounded-lg object-cover object-center shadow-card sm:h-[320px] md:h-[380px]" width={1600} height={1000} />
+            </Reveal>
+            <Reveal delay={180} variant="up-sm">
+              <img src={institutionalImage} alt="Profissionais da saúde firmando parceria corporativa" loading="lazy" className="h-[260px] w-full rounded-lg object-cover object-center shadow-card sm:h-[320px] md:h-[380px]" width={1600} height={1000} />
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="noise-texture bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <SectionHeader eyebrow="Diferenciais" title="Controle, documentação e suporte em cada etapa" />
+          <Reveal><SectionHeader eyebrow="Diferenciais" title="Controle, documentação e suporte em cada etapa" /></Reveal>
           <div
             className="mx-auto mt-10 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2"
             style={{ maxWidth: "1100px" }}
           >
-            {differentials.map((item) => (
-              <IconCard key={item.title} item={item} />
+            {differentials.map((item, i) => (
+              <Reveal key={item.title} index={i} variant="up-sm">
+                <IconCard item={item} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -392,8 +396,8 @@ export function HomePage() {
 
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <SectionHeader eyebrow="Público atendido" title="Atuação B2B e institucional" />
-          <AudienceCarousel />
+          <Reveal><SectionHeader eyebrow="Público atendido" title="Atuação B2B e institucional" /></Reveal>
+          <Reveal delay={120}><AudienceCarousel /></Reveal>
         </div>
       </section>
 
