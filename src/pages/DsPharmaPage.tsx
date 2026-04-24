@@ -195,10 +195,10 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 function SectionHeader({ eyebrow, title, text }: { eyebrow?: string; title: string; text?: string }) {
   return (
-    <div className="mx-auto mb-12 max-w-3xl text-center">
-      {eyebrow && <p className="mb-3 text-sm font-semibold text-primary">{eyebrow}</p>}
-      <h2 className="text-3xl font-semibold tracking-normal text-ink md:text-4xl">{title}</h2>
-      {text && <p className="mt-4 text-base leading-7 text-steel md:text-lg">{text}</p>}
+    <div className="mx-auto mb-14 max-w-3xl text-center">
+      {eyebrow && <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-primary">{eyebrow}</p>}
+      <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">{title}</h2>
+      {text && <p className="mt-6 text-base leading-7 text-steel md:text-lg">{text}</p>}
     </div>
   );
 }
@@ -349,7 +349,7 @@ export function HomePage() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 md:px-8">
           <div>
             <p className="mb-3 text-sm font-semibold text-primary">Institucional</p>
-            <h2 className="text-3xl font-semibold text-ink md:text-4xl">Operação dedicada ao mercado corporativo</h2>
+            <h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Operação dedicada ao mercado corporativo</h2>
             <p className="mt-5 text-lg leading-8 text-steel">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
           </div>
           <img src={institutionalImage} alt="Equipe farmacêutica em ambiente técnico de logística" loading="lazy" className="h-[420px] w-full rounded-lg object-cover shadow-card" width={1600} height={1000} />
@@ -475,7 +475,7 @@ export function ContactPage() {
 }
 
 function ComplianceCta() {
-  return <section className="bg-secondary py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><LockKeyhole className="mx-auto mb-5 size-12 text-primary" /><h2 className="text-3xl font-semibold text-ink md:text-4xl">Compliance como base da operação</h2><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-steel">Trabalhamos com rigor técnico e documentação completa, garantindo segurança jurídica e operacional para nossos parceiros</p><Button asChild variant="premium" size="xl" className="mt-8"><Link to="/compliance">Ver documentação e certificações</Link></Button></div></section>;
+  return <section className="bg-secondary py-20"><div className="mx-auto max-w-4xl px-4 text-center md:px-8"><LockKeyhole className="mx-auto mb-5 size-12 text-primary" /><h2 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-5xl">Compliance como base da operação</h2><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-steel">Trabalhamos com rigor técnico e documentação completa, garantindo segurança jurídica e operacional para nossos parceiros</p><Button asChild variant="premium" size="xl" className="mt-8"><Link to="/compliance">Ver documentação e certificações</Link></Button></div></section>;
 }
 
 function PageHero({ title, text }: { title: string; text: string }) {
