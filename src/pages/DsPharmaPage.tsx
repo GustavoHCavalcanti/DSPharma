@@ -362,7 +362,7 @@ export function HomePage() {
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <SectionHeader eyebrow="Diferenciais" title="Controle, documentação e suporte em cada etapa" />
           <div
-            className="mx-auto mt-10 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2"
+            className="mx-auto mt-10 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2"
             style={{ maxWidth: "1100px" }}
           >
             {differentials.map((item) => (
