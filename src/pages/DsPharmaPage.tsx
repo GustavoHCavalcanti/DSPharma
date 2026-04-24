@@ -244,7 +244,7 @@ function AudienceCarousel() {
     <div className="mx-auto max-w-6xl">
       <Carousel
         setApi={setApi}
-        opts={{ align: "start", containScroll: "trimSnaps", dragFree: false }}
+        opts={{ align: "start", containScroll: "trimSnaps", dragFree: false, duration: 28, loop: false }}
         className="px-0 lg:px-14"
         aria-label="Públicos atendidos pela DS Pharma"
       >
@@ -270,8 +270,8 @@ function AudienceCarousel() {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className="left-0 hidden border-border bg-card text-ink shadow-card hover:border-primary hover:bg-secondary hover:text-primary lg:inline-flex" />
-        <CarouselNext className="right-0 hidden border-border bg-card text-ink shadow-card hover:border-primary hover:bg-secondary hover:text-primary lg:inline-flex" />
+        <CarouselPrevious className="left-0 hidden size-11 border-border bg-card/95 text-ink shadow-card backdrop-blur transition-all duration-200 hover:border-primary hover:bg-primary hover:text-primary-foreground lg:inline-flex" />
+        <CarouselNext className="right-0 hidden size-11 border-border bg-card/95 text-ink shadow-card backdrop-blur transition-all duration-200 hover:border-primary hover:bg-primary hover:text-primary-foreground lg:inline-flex" />
       </Carousel>
 
       <div className="mt-8 flex items-center justify-center gap-2" aria-label="Indicadores do carrossel">
