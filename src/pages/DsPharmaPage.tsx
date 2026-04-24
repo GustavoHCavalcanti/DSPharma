@@ -34,7 +34,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import heroLabImage from "@/assets/ds-pharma-hero-lab.jpg";
-import institutionalImage from "@/assets/ds-pharma-institutional.jpg";
+import institutionalImage from "@/assets/ds-pharma-institutional-handshake.jpg";
+import institutionalHeroImage from "@/assets/ds-pharma-lab-microscope.jpg";
 import dsPharmaLogo from "@/assets/ds-pharma-logo.png";
 
 type IconItem = {
@@ -243,7 +244,7 @@ function AudienceCarousel() {
     <div className="mx-auto max-w-6xl">
       <Carousel
         setApi={setApi}
-        opts={{ align: "start", containScroll: "trimSnaps", dragFree: false }}
+        opts={{ align: "start", containScroll: "trimSnaps", dragFree: false, duration: 28, loop: false }}
         className="px-0 lg:px-14"
         aria-label="Públicos atendidos pela DS Pharma"
       >
@@ -269,8 +270,8 @@ function AudienceCarousel() {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className="left-0 hidden border-border bg-card text-ink shadow-card hover:border-primary hover:bg-secondary hover:text-primary lg:inline-flex" />
-        <CarouselNext className="right-0 hidden border-border bg-card text-ink shadow-card hover:border-primary hover:bg-secondary hover:text-primary lg:inline-flex" />
+        <CarouselPrevious className="left-0 hidden size-11 border-border bg-card/95 text-ink shadow-card backdrop-blur transition-all duration-200 hover:border-primary hover:bg-primary hover:text-primary-foreground lg:inline-flex" />
+        <CarouselNext className="right-0 hidden size-11 border-border bg-card/95 text-ink shadow-card backdrop-blur transition-all duration-200 hover:border-primary hover:bg-primary hover:text-primary-foreground lg:inline-flex" />
       </Carousel>
 
       <div className="mt-8 flex items-center justify-center gap-2" aria-label="Indicadores do carrossel">
@@ -347,13 +348,13 @@ export function HomePage() {
 
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <p className="mb-3 text-center text-sm font-semibold text-primary">Institucional</p>
-          <div className="mt-10 grid grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-10 md:gap-12">
+          <h2 className="text-center text-3xl font-semibold leading-tight tracking-tight text-primary md:text-4xl">Institucional</h2>
+          <div className="mt-12 grid grid-cols-1 items-center gap-10 sm:grid-cols-2 md:gap-14">
             <div className="min-w-0">
-              <h2 className="text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl">Operação dedicada ao mercado corporativo</h2>
+              <h3 className="text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl">Operação dedicada ao mercado corporativo</h3>
               <p className="mt-5 text-base leading-7 text-steel sm:text-lg sm:leading-8">A DS Pharma atua na importação e distribuição de canabidiol no Brasil, com foco exclusivo no atendimento a pessoas jurídicas e à distribuição para o setor governamental.</p>
             </div>
-            <img src={institutionalImage} alt="Equipe farmacêutica em ambiente técnico de logística" loading="lazy" className="h-[260px] w-full rounded-lg object-cover shadow-card sm:h-[320px] md:h-[360px]" width={1600} height={1000} />
+            <img src={institutionalImage} alt="Profissionais da saúde firmando parceria corporativa" loading="lazy" className="h-[260px] w-full rounded-lg object-cover object-center shadow-card sm:h-[320px] md:h-[380px]" width={1600} height={1000} />
           </div>
         </div>
       </section>
@@ -488,5 +489,5 @@ function ComplianceCta() {
 }
 
 function PageHero({ title, text }: { title: string; text: string }) {
-  return <section className="relative overflow-hidden bg-hero py-24 text-hero-foreground"><img src={institutionalImage} alt="Operação farmacêutica institucional" className="absolute inset-0 h-full w-full object-cover opacity-30" width={1600} height={1000} /><div className="hero-overlay absolute inset-0" /><div className="relative mx-auto max-w-7xl px-4 md:px-8"><h1 className="max-w-3xl text-4xl font-bold tracking-normal md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-hero-foreground/82">{text}</p></div></section>;
+  return <section className="relative overflow-hidden bg-hero py-24 text-hero-foreground"><img src={institutionalHeroImage} alt="Laboratório farmacêutico com microscópios em operação" className="absolute inset-0 h-full w-full object-cover object-center opacity-40" width={1600} height={1000} /><div className="hero-overlay absolute inset-0" /><div className="relative mx-auto max-w-7xl px-4 md:px-8"><h1 className="max-w-3xl text-4xl font-bold tracking-normal md:text-5xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-hero-foreground/82">{text}</p></div></section>;
 }
