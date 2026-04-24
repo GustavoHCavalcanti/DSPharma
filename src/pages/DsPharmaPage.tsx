@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/Reveal";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import heroLabImage from "@/assets/ds-pharma-hero-lab.jpg";
 import institutionalImage from "@/assets/ds-pharma-institutional-handshake.jpg";
