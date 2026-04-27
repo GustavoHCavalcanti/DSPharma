@@ -13,4 +13,4 @@ const PlaceholderIndex = () => {
 
 const Index = PlaceholderIndex;
 
-export default Index;
+export default Index

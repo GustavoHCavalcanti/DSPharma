@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, MouseEvent, useEffect, useMemo, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import {
   ArrowRight,
@@ -50,6 +50,18 @@ type IconItem = {
   icon: LucideIcon;
   title: string;
   text?: string;
+};
+
+type FormField = {
+  label: string;
+  name: string;
+  type?: "email" | "tel" | "text";
+  autoComplete?: string;
+  inputMode?: "email" | "numeric" | "tel" | "text";
+  pattern?: string;
+  minLength?: number;
+  maxLength?: number;
+  placeholder?: string;
 };
 
 const navItems = [
@@ -144,6 +156,52 @@ const checklist: IconItem[] = [
   { icon: Handshake, title: "Comercial", text: "Condições, canais e fluxo de atendimento." },
 ];
 
+const companyFields: FormField[] = [
+  { label: "Razão social", name: "razao-social", autoComplete: "organization", minLength: 3, maxLength: 120 },
+  {
+    label: "CNPJ",
+    name: "cnpj",
+    inputMode: "numeric",
+    pattern: "\\d{2}\\.?\\d{3}\\.?\\d{3}/?\\d{4}-?\\d{2}",
+    maxLength: 18,
+    placeholder: "00.000.000/0000-00",
+  },
+  { label: "Segmento", name: "segmento", autoComplete: "organization-title", minLength: 3, maxLength: 80 },
+  { label: "Volume estimado", name: "volume-estimado", maxLength: 80 },
+];
+
+const b2bContactFields: FormField[] = [
+  { label: "Nome do responsável", name: "responsavel", autoComplete: "name", minLength: 3, maxLength: 100 },
+  { label: "E-mail corporativo", name: "email", type: "email", autoComplete: "email", inputMode: "email", maxLength: 120 },
+  {
+    label: "Telefone",
+    name: "telefone",
+    type: "tel",
+    autoComplete: "tel",
+    inputMode: "tel",
+    pattern: "\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}",
+    maxLength: 16,
+    placeholder: "(00) 00000-0000",
+  },
+  { label: "Mensagem", name: "mensagem", minLength: 10, maxLength: 700 },
+];
+
+const commercialContactFields: FormField[] = [
+  { label: "Nome", name: "nome", autoComplete: "name", minLength: 3, maxLength: 100 },
+  { label: "Empresa", name: "empresa", autoComplete: "organization", minLength: 3, maxLength: 120 },
+  { label: "E-mail", name: "email", type: "email", autoComplete: "email", inputMode: "email", maxLength: 120 },
+  {
+    label: "Telefone",
+    name: "telefone",
+    type: "tel",
+    autoComplete: "tel",
+    inputMode: "tel",
+    pattern: "\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}",
+    maxLength: 16,
+    placeholder: "(00) 00000-0000",
+  },
+];
+
 function Layout({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -224,7 +282,7 @@ function SectionHeader({ eyebrow, title, text, titleClassName }: { eyebrow?: str
 function IconCard({ item }: { item: IconItem }) {
   const Icon = item.icon;
   return (
-    <article className="group rounded-lg border border-border bg-card p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-card">
+    <article className="group flex h-full flex-col rounded-lg border border-border bg-card p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-card">
       <div className="mb-5 flex size-12 items-center justify-center rounded-md bg-secondary text-primary transition-transform duration-300 group-hover:scale-105">
         <Icon className="size-6" />
       </div>
@@ -365,7 +423,7 @@ export function HomePage() {
 
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <Reveal><SectionHeader eyebrow="Institucional"  titleClassName="text-primary" /></Reveal>
+          <Reveal><SectionHeader eyebrow="Institucional" title="Operação dedicada ao mercado corporativo" titleClassName="text-primary" /></Reveal>
           <div className="grid grid-cols-1 items-center gap-10 sm:grid-cols-2 md:gap-14">
             <Reveal className="min-w-0" delay={80}>
               <h3 className="text-2xl font-bold leading-tight tracking-tight text-ink sm:text-3xl md:text-4xl">Operação dedicada ao mercado corporativo</h3>
@@ -382,11 +440,11 @@ export function HomePage() {
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <Reveal><SectionHeader eyebrow="Diferenciais" title="Controle, documentação e suporte em cada etapa" /></Reveal>
           <div
-            className="mx-auto mt-10 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2"
+            className="mx-auto mt-10 grid w-full grid-cols-1 gap-6 items-stretch sm:grid-cols-2 md:grid-cols-3 md:grid-rows-2"
             style={{ maxWidth: "1100px" }}
           >
             {differentials.map((item, i) => (
-              <Reveal key={item.title} index={i} variant="up-sm">
+              <Reveal key={item.title} index={i} variant="up-sm" className="h-full">
                 <IconCard item={item} />
               </Reveal>
             ))}
@@ -432,15 +490,15 @@ export function ProductsPage() {
       />
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-3 items-stretch">
             {products.map((product, i) => (
               <Reveal key={product.name} index={i} variant="up-sm">
-                <article className="flex flex-col overflow-hidden rounded-lg border border-border bg-card p-3 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
+                <article className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card p-3 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
                   <div className="relative overflow-hidden rounded-md">
                     <img src={product.image} alt={product.imageAlt} loading="lazy" className={`h-44 w-full object-cover transition-transform duration-500 hover:scale-105 md:h-48 ${product.imagePosition}`} width={1600} height={1000} />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
                   </div>
-                  <div className="flex flex-1 flex-col px-3 pb-3 pt-4"><h2 className="text-lg font-semibold text-ink">{product.name}</h2><p className="mt-2 text-sm leading-6 text-steel">{product.summary}</p><Button variant="premium" className="mt-4 self-start">Ver detalhes</Button></div>
+                  <div className="flex flex-1 flex-col px-3 pb-3 pt-4"><h2 className="text-lg font-semibold text-ink">{product.name}</h2><p className="mt-2 text-sm leading-6 text-steel">{product.summary}</p><Button variant="premium" className="mt-auto self-center">Ver detalhes</Button></div>
                 </article>
               </Reveal>
             ))}
@@ -497,20 +555,28 @@ export function B2BRegisterPage() {
   return (
     <Layout>
       <PageHero title="Solicitação de cadastro empresarial" text="Fluxo inicial para análise comercial e documental de parceiros B2B." image={b2bHeroImage} imageAlt="Escritório corporativo iluminado, ambiente de negócios B2B" />
-      <section className="bg-background py-20"><div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-[0.8fr_1.2fr] md:px-8"><div><SectionHeader title="Checklist de informações obrigatórias" text="Blocos organizados para agilizar a análise empresarial." /> <div className="grid gap-4">{checklist.map((item) => <IconCard key={item.title} item={item} />)}</div></div><form onSubmit={submit} className="rounded-lg border border-border bg-card p-6 shadow-card"><div className="mb-6 flex gap-2">{[1,2,3].map((item) => <span key={item} className={`h-2 flex-1 rounded-full ${item <= step ? "bg-primary" : "bg-border"}`} />)}</div>{step === 1 && <FormStep title="Dados da empresa" fields={["Razão social", "CNPJ", "Segmento", "Volume estimado"]} onNext={() => setStep(2)} />}{step === 2 && <FormStep title="Contato" fields={["Nome do responsável", "E-mail corporativo", "Telefone", "Mensagem"]} onNext={() => setStep(3)} submit />}{step === 3 && <div className="py-12 text-center"><CheckCircle2 className="mx-auto mb-5 size-14 text-primary" /><h2 className="text-2xl font-semibold text-ink">Cadastro recebido</h2><p className="mt-3 text-steel">O time comercial retornará com as próximas etapas de análise.</p></div>}</form></div></section>
+      <section className="bg-background py-20"><div className="mx-auto grid max-w-7xl items-start gap-10 px-4 md:grid-cols-[0.8fr_1.2fr] md:px-8"><div className="self-start"><SectionHeader title="Checklist de informações obrigatórias" text="Blocos organizados para agilizar a análise empresarial." /> <div className="grid gap-4">{checklist.map((item) => <IconCard key={item.title} item={item} />)}</div></div><form onSubmit={submit} className="self-start rounded-lg border border-border bg-card p-6 shadow-card"><div className="mb-6 flex gap-2">{[1,2,3].map((item) => <span key={item} className={`h-2 flex-1 rounded-full ${item <= step ? "bg-primary" : "bg-border"}`} />)}</div>{step === 1 && <FormStep title="Dados da empresa" fields={companyFields} onNext={() => setStep(2)} />}{step === 2 && <FormStep title="Contato" fields={b2bContactFields} onNext={() => setStep(3)} submit />}{step === 3 && <div className="py-12 text-center"><CheckCircle2 className="mx-auto mb-5 size-14 text-primary" /><h2 className="text-2xl font-semibold text-ink">Cadastro recebido</h2><p className="mt-3 text-steel">O time comercial retornará com as próximas etapas de análise.</p></div>}</form></div></section>
     </Layout>
   );
 }
 
-function FormStep({ title, fields, onNext, submit }: { title: string; fields: string[]; onNext: () => void; submit?: boolean }) {
-  return <div><h2 className="mb-6 text-2xl font-semibold text-ink">{title}</h2><div className="grid gap-4">{fields.map((field) => <label key={field} className="grid gap-2 text-sm font-medium text-ink">{field}<input required className="h-11 rounded-md border border-input bg-background px-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20" /></label>)}</div><Button type={submit ? "submit" : "button"} onClick={submit ? undefined : onNext} variant="hero" className="mt-6">{submit ? "Enviar solicitação" : "Continuar"}</Button></div>;
+function FormStep({ title, fields, onNext, submit }: { title: string; fields: FormField[]; onNext: () => void; submit?: boolean }) {
+  const validateAndContinue = (event: MouseEvent<HTMLButtonElement>) => {
+    const form = event.currentTarget.form;
+    if (form?.reportValidity()) onNext();
+  };
+
+  return <div><h2 className="mb-6 text-2xl font-semibold text-ink">{title}</h2><div className="grid gap-4">{fields.map((field) => <label key={field.name} className="grid gap-2 text-sm font-medium text-ink">{field.label}<input required name={field.name} type={field.type ?? "text"} autoComplete={field.autoComplete} inputMode={field.inputMode} pattern={field.pattern} minLength={field.minLength} maxLength={field.maxLength} placeholder={field.placeholder} className="h-11 rounded-md border border-input bg-background px-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20" /></label>)}</div><Button type={submit ? "submit" : "button"} onClick={submit ? undefined : validateAndContinue} variant="hero" className="mt-6">{submit ? "Enviar solicitação" : "Continuar"}</Button></div>;
 }
 
 export function ContactPage() {
+  const [sent, setSent] = useState(false);
+  const submit = (event: FormEvent) => { event.preventDefault(); setSent(true); };
+
   return (
     <Layout>
       <PageHero title="Fale com a DS Pharma" text="Atendimento comercial especializado para empresas, distribuidores e instituições." image={contactHeroImage} imageAlt="Equipe de atendimento comercial em operação" />
-      <section className="bg-background py-20"><div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:px-8"><div className="grid content-start gap-5">{[{ icon: Phone, title: "Telefone", text: "Atendimento comercial" }, { icon: Mail, title: "E-mail", text: "comercial@dspharma.com.br" }, { icon: MapPin, title: "Localização", text: "Brasil" }, { icon: Handshake, title: "WhatsApp", text: "Canal B2B" }].map((item) => <IconCard key={item.title} item={item} />)}</div><form className="rounded-lg border border-border bg-card p-6 shadow-card"><h2 className="mb-6 text-2xl font-semibold text-ink">Contato comercial</h2><div className="grid gap-4">{["Nome", "Empresa", "E-mail", "Telefone"].map((field) => <label key={field} className="grid gap-2 text-sm font-medium text-ink">{field}<input required className="h-11 rounded-md border border-input bg-background px-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20" /></label>)}<label className="grid gap-2 text-sm font-medium text-ink">Mensagem<textarea required className="min-h-32 rounded-md border border-input bg-background p-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20" /></label></div><Button variant="hero" className="mt-6">Enviar mensagem</Button></form></div></section>
+      <section className="bg-background py-20"><div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:px-8"><div className="grid content-start gap-5">{[{ icon: Phone, title: "Telefone", text: "Atendimento comercial" }, { icon: Mail, title: "E-mail", text: "comercial@dspharma.com.br" }, { icon: MapPin, title: "Localização", text: "Brasil" }, { icon: Handshake, title: "WhatsApp", text: "Canal B2B" }].map((item) => <IconCard key={item.title} item={item} />)}</div><form onSubmit={submit} className="rounded-lg border border-border bg-card p-6 shadow-card"><h2 className="mb-6 text-2xl font-semibold text-ink">Contato comercial</h2>{sent ? <div className="py-12 text-center"><CheckCircle2 className="mx-auto mb-5 size-14 text-primary" /><p className="text-lg font-semibold text-ink">Mensagem recebida</p><p className="mt-3 text-steel">O time comercial retornará em breve.</p></div> : <><div className="grid gap-4">{commercialContactFields.map((field) => <label key={field.name} className="grid gap-2 text-sm font-medium text-ink">{field.label}<input required name={field.name} type={field.type ?? "text"} autoComplete={field.autoComplete} inputMode={field.inputMode} pattern={field.pattern} minLength={field.minLength} maxLength={field.maxLength} placeholder={field.placeholder} className="h-11 rounded-md border border-input bg-background px-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20" /></label>)}<label className="grid gap-2 text-sm font-medium text-ink">Mensagem<textarea required name="mensagem" minLength={10} maxLength={700} className="min-h-32 rounded-md border border-input bg-background p-3 text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20" /></label></div><Button type="submit" variant="hero" className="mt-6">Enviar mensagem</Button></>}</form></div></section>
     </Layout>
   );
 }
